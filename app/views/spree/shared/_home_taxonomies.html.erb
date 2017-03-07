@@ -1,0 +1,33 @@
+<% max_level = Spree::Config[:max_level_in_taxons_menu] || 1 %>
+<div class="panel-group" id="accordions">
+	<div class="panel panel-default">
+	  <div class="bg-panel-heading">
+	  <% @taxonomies.each do |taxonomy| %>
+	    <% cache [I18n.locale, taxonomy, max_level, @taxon] do %>
+	      
+	      	<% if taxonomy.root.children.any? %>
+					<div class="panel-heading">
+						<h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordions" href= <%= "##{taxonomy.name}_1" %> aria-expanded="true" >
+                <h4 class='taxonomy-root'><%=  taxonomy.name %></h4>
+              </a>
+		        </h4>
+	        </div>
+	      	<% end %>
+	      
+			<% end %>
+		<% end %>
+		</div>
+			<% @taxonomies.each do |taxonomy| %>
+		    <% cache [I18n.locale, taxonomy, max_level, @taxon] do %>
+		      <% if taxonomy.root.children.any? %>
+						<div id=<%= "#{taxonomy.name}_1"%> class="panel-collapse collapse">
+							<div class="panel-body">
+				        <%= taxons_tree(taxonomy.root, @taxon, max_level) %>
+							</div>
+						</div>	
+					<% end %>
+				<% end %>
+			<% end %>
+	</div>
+</div>

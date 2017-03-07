@@ -1,12 +1,37 @@
 <% max_level = Spree::Config[:max_level_in_taxons_menu] || 1 %>
 
 <nav id="taxonomies" class="sidebar-item" data-hook>
-  <% @taxonomies.each do |taxonomy| %>
-    <% cache [I18n.locale, taxonomy, max_level, @taxon] do %>
-      <% if taxonomy.root.children.any? %>
-        <h4 class='taxonomy-root'><%= Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name) %></h4>
-        <%= taxons_tree(taxonomy.root, @taxon, max_level) %>
-      <% end %>
-    <% end %>
-  <% end %>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<div class="panel panel-default">
+		  <% @taxonomies.each do |taxonomy| %>
+		    <% cache [I18n.locale, taxonomy, max_level, @taxon] do %>
+		      <% if taxonomy.root.children.any? %>
+		        <div class="panel-heading" role="tab">
+				      <h4 class="panel-title">
+	                <a role="button" data-toggle="collapse" data-parent="#accordion" href= <%= "##{taxonomy.name}" %> aria-expanded="true">
+				          <h4 class='taxonomy-root'><%=  taxonomy.name %><i class="short-full glyphicon glyphicon-chevron-down"></i></h4>
+				        </a>
+				      </h4>
+				    </div>
+            <div id=<%= "#{taxonomy.name}"%> class="panel-collapse collapse" role="tabpanel">
+				      <div class="panel-body">
+				        <%= taxons_tree(taxonomy.root, @taxon, max_level) %>
+				      </div>
+				    </div>
+		      <% end %>
+		    <% end %>
+		  <% end %>
+	  </div>
+	</div>
 </nav>
+
+<%= javascript_tag do %>
+	function toggleIcon(e) {
+	  $(e.target)
+	      .prev('.panel-heading')
+	      .find(".short-full")
+	      .toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+	}
+	$('.panel-group').on('hidden.bs.collapse', toggleIcon);
+	$('.panel-group').on('shown.bs.collapse', toggleIcon);
+<% end %>

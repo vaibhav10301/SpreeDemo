@@ -1,8 +1,13 @@
+<% content_for :sidebar do %>
+  <div data-hook="homepage_sidebar_navigation">
+    <%= render partial: 'spree/shared/taxonomies' %>
+  </div>
+<% end %>
 <% @body_id = 'product-details' %>
 
 <% cache cache_key_for_product do %>
   <div data-hook="product_show" class="row" itemscope itemtype="https://schema.org/Product">
-    <div class="col-md-4 col-sm-5" data-hook="product_left_part">
+    <div class="col-md-6 col-sm-7" data-hook="product_left_part">
       <div data-hook="product_left_part_wrap">
         <div id="product-images" data-hook="product_images">
           <div id="main-image" class="panel panel-default" data-hook>
@@ -25,7 +30,7 @@
       </div>
     </div>
 
-    <div class="col-md-8 col-sm-7" data-hook="product_right_part">
+    <div class="col-md-6 col-sm-5" data-hook="product_right_part">
       <div data-hook="product_right_part_wrap">
         <div id="product-description" data-hook="product_description">
           <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
@@ -33,12 +38,10 @@
           <div class="well" itemprop="description" data-hook="description">
             <%= product_description(@product) %>
           </div>
-
           <div id="cart-form" data-hook="cart_form">
             <%= render partial: 'cart_form' %>
           </div>
         </div>
-
         <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
           <%= render partial: 'taxons' %>
         </div>
