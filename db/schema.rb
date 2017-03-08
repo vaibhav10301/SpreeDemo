@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303101537) do
+ActiveRecord::Schema.define(version: 20170308084357) do
+
+  create_table "erp_integrations", force: :cascade do |t|
+    t.string   "name",       limit: 255,                   null: false
+    t.string   "url",        limit: 255,                   null: false
+    t.boolean  "selected",                 default: false
+    t.text     "token",      limit: 65535,                 null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -27,6 +36,14 @@ ActiveRecord::Schema.define(version: 20170303101537) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "price_demos", force: :cascade do |t|
+    t.integer  "variant_id", limit: 4
+    t.decimal  "amount",                 precision: 10, scale: 2
+    t.string   "currency",   limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
 
   create_table "spree_addresses", force: :cascade do |t|
     t.string   "firstname",         limit: 255
