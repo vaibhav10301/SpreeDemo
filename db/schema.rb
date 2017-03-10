@@ -11,9 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308084357) do
+ActiveRecord::Schema.define(version: 20170309120339) do
 
   create_table "erp_integrations", force: :cascade do |t|
+    t.string   "name",       limit: 255,                   null: false
+    t.string   "url",        limit: 255,                   null: false
+    t.boolean  "selected",                 default: false
+    t.text     "token",      limit: 65535,                 null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  create_table "erp_price_integrations", force: :cascade do |t|
     t.string   "name",       limit: 255,                   null: false
     t.string   "url",        limit: 255,                   null: false
     t.boolean  "selected",                 default: false

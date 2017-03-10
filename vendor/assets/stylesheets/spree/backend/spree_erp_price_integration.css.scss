@@ -1,0 +1,32 @@
+.headingWithbutton {
+	margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
+}
+.price-integration-index {
+	font-size: 24px;
+	float: left;
+	margin: 0;
+}
+.new-integrate {
+	float: right;
+}
+.price-integration-table {
+	width: 100%;
+}
+.price-integration-table tr {
+	border-bottom: 2px solid #ddd;
+	padding: 10px  0;
+}
+.price-integration-table tr th {
+	padding: 10px;
+	color: #478DC1;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+.price-integration-table tr td {
+	padding: 10px;
+	font-size: 14px;
+}

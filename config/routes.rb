@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   #
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, at: '/'
+
+  namespace :admin, path: Spree.admin_path do
+    resources :erp_price_integrations
+
+  end
+  put 'erp_price_integrations/:id/source-update' => 'spree/admin/erp_price_integrations#update_integration_source'
           # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

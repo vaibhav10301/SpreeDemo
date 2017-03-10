@@ -32,6 +32,8 @@ gem 'spree_auth_devise', '~> 3.1.0', git: 'https://github.com/vaibhav10301/spree
 
 gem 'spree_gateway', '~> 3.1.0', git: 'https://github.com/vaibhav10301/spree_gateway.git', tag: 'v3.1.0'
 
+gem 'spree_erp_price_integration', git: 'https://github.com/vaibhav10301/spree_erp_price_integration.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -46,7 +46,11 @@ module Spree
       end
 
       def load_taxon
-        @taxon = Spree::Taxon.find(params[:taxon]) if params[:taxon].present?
+        if params[:taxon].present?
+          @taxon = Spree::Taxon.find(params[:taxon])
+        else
+          @taxon = Spree::Taxon.first
+        end
       end
 
       def redirect_if_legacy_path
