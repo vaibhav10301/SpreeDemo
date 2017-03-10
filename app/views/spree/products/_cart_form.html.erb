@@ -34,17 +34,8 @@
         <div id="product-price">
           <div>
             <span class="lead price selling" itemprop="price">
-              <%= "Cust Price" %>
               <%= display_price(@product) %>
             </span></br>
-            <span class="list price selling" itemprop="price">
-              <%= "list Price" %>
-              <%= "value" %>
-            </span></br>
-            <span class="cost price selling" itemprop="price">
-              <%= "Cost Price" %>
-              <%= "value" %>
-            </span>
             <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
           </div>
 

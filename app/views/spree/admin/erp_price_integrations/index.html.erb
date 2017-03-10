@@ -36,18 +36,6 @@
 <%= submit_tag "Integrate", class: "btn btn-success integrate-price" %>
 
 <script type="text/javascript">
-  $(function(){
-    $("input[name=Integration]").change(function(){
-      var app_name;
-      if ($("input[name='Integration']:checked").val() == 5){
-        app_name = "ERB Application"
-      }
-      else if ($("input[name='Integration']:checked").val() == 6){
-        app_name = "Spree Application"
-      }
-      $(".integrate-price").val("Integrate" + " " + app_name);
-    });
-  });
   
   $( document ).ready(function() {
     $('.integrate-price').click(function() {

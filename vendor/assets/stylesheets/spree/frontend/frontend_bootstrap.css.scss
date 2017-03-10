@@ -154,8 +154,8 @@ table {
   height: 100%;
   background: #fff;
   box-shadow: 5px 0 5px -3px rgba(0,0,0,0.15);
-/*  margin-top: 30px;
-*/}
+  padding-top: 30px;
+}
 
 .product-homepage {
   width: calc(100% - 200px);
@@ -513,4 +513,7 @@ table {
 }
 .col-md-offset-3 .panel-default {
   margin-top: 30px;
+}
+.product-display {
+  padding-top: 30px;
 }
