@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 20170309120339) do
     t.datetime "updated_at",                               null: false
   end
 
-  create_table "erp_price_integrations", force: :cascade do |t|
-    t.string   "name",       limit: 255,                   null: false
-    t.string   "url",        limit: 255,                   null: false
-    t.boolean  "selected",                 default: false
-    t.text     "token",      limit: 65535,                 null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
     t.integer  "sluggable_id",   limit: 4,   null: false
@@ -166,6 +157,15 @@ ActiveRecord::Schema.define(version: 20170309120339) do
     t.integer  "stock_location_id", limit: 4
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "spree_erp_price_integrations", force: :cascade do |t|
+    t.string   "name",       limit: 255,                   null: false
+    t.string   "url",        limit: 255,                   null: false
+    t.boolean  "selected",                 default: false
+    t.text     "token",      limit: 65535,                 null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "spree_gateways", force: :cascade do |t|
