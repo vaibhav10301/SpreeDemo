@@ -5,7 +5,7 @@ module Spree
     # GET /erp_integrations
     # GET /erp_integrations.json
     def index
-      @erp_integrations = ErpPriceIntegration.all
+      @erp_integrations = Spree::ErpPriceIntegration.all
     end
 
     # GET /erp_integrations/1
@@ -15,7 +15,7 @@ module Spree
 
     # GET /erp_integrations/new
     def new
-      @erp_integration = ErpPriceIntegration.new
+      @erp_integration = Spree::ErpPriceIntegration.new
     end
 
     # GET /erp_integrations/1/edit
@@ -25,11 +25,11 @@ module Spree
     # POST /erp_integrations
     # POST /erp_integrations.json
     def create
-      @erp_integration = ErpPriceIntegration.new(erp_price_integration_params)
+      @erp_integration = Spree::ErpPriceIntegration.new(spree_erp_price_integration_params)
 
       respond_to do |format|
         if @erp_integration.save
-          format.html { redirect_to admin_erp_price_integrations_path, notice: 'Erp integration was successfully created.' }
+          format.html { redirect_to admin_erp_price_integrations_path}
           # format.json { render :show, status: :created, location: admin_erp_price_integrations_path }
         else
           format.html { render :new }
@@ -42,7 +42,7 @@ module Spree
     # PATCH/PUT /erp_integrations/1.json
     def update
       respond_to do |format|
-        if @erp_integration.update(erp_price_integration_params)
+        if @erp_integration.update(spree_erp_price_integration_params)
           format.html { redirect_to @erp_integration, notice: 'Erp integration was successfully updated.' }
           # format.json { render :show, status: :ok, location: @erp_integration }
         else
@@ -55,7 +55,7 @@ module Spree
     def update_integration_source
       respond_to do |format|
         update_false_other_source(params[:id])
-        @erp_integration = ErpPriceIntegration.find(params[:id])
+        @erp_integration = Spree::ErpPriceIntegration.find(params[:id])
         @erp_integration.selected = true if params[:selected]
         @erp_integration.save
         format.json { render :show, status: :ok}
@@ -63,7 +63,7 @@ module Spree
     end
 
     def update_false_other_source(id)
-      erp_integrations = ErpPriceIntegration.where.not(:id => params[:id])
+      erp_integrations = Spree::ErpPriceIntegration.where.not(:id => params[:id])
       erp_integrations.each do |erp_integration|
         erp_integration.selected = false;
         erp_integration.save
@@ -83,11 +83,11 @@ module Spree
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_erp_integration
-        @erp_integration = ErpPriceIntegration.find(params[:id])
+        @erp_integration = Spree::ErpPriceIntegration.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
-      def erp_price_integration_params
+      def spree_erp_price_integration_params
         params.require(:erp_price_integration).permit(:name, :url, :selected, :token)
       end
     end
